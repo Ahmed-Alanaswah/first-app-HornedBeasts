@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import { Card, Button, Col } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import SelectedBeast from "./SelectedBeast";
 
 class HornedBeasts extends Component {
-	// constructor(props) {
-	// 	super(props);
-	// 	this.state = { raislikes: 0 };
-	// }
-	// increaseLike = () => {
-	// 	this.setState({
-	// 		raislikes: this.state.raislikes + 1,
-	// 	});
-	// };
+	constructor(props) {
+		super(props);
+		this.state = { raislikes: 0 };
+	}
+	increaseLike = () => {
+		this.setState({
+			raislikes: this.state.raislikes + 1,
+		});
+	};
 
 	getHandleOpen = () => {
 		let title = this.props.title;
 		let description = this.props.description;
-		let raislikes = this.props.raislikes;
+		let raislikes = this.state.raislikes;
 		let image_url = this.props.image_url;
 		this.props.handleOpen(title, description, image_url, raislikes);
 	};
@@ -31,7 +33,7 @@ class HornedBeasts extends Component {
 						<Card.Img
 							variant="top"
 							style={{ height: "200px", objectFit: "cover" }}
-							onClick={this.props.increaseLike}
+							onClick={this.increaseLike}
 							src={this.props.image_url}
 							alt={this.props.keyword}
 						/>
@@ -47,7 +49,13 @@ class HornedBeasts extends Component {
 							<Card.Text>
 								{this.props.description}
 								<br />
-								<i className="bi bi-suit-heart-fill"></i>:{this.props.raislikes}
+								<img
+									src={
+										"https://e7.pngegg.com/pngimages/22/527/png-clipart-heart-open-free-content-heart.png"
+									}
+									style={{ width: "30px", height: "30px", marginRight: "10px" }}
+								/>
+								:{this.state.raislikes}
 							</Card.Text>
 							<Button onClick={this.getHandleOpen} variant="primary">
 								Go somewhere
