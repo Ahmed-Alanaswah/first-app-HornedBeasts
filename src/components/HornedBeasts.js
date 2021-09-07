@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Card, Button, Col } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import SelectedBeast from "./SelectedBeast";
+
+import { BsFillHeartFill } from "react-icons/bs";
 
 class HornedBeasts extends Component {
 	constructor(props) {
@@ -49,11 +49,9 @@ class HornedBeasts extends Component {
 							<Card.Text>
 								{this.props.description}
 								<br />
-								<img
-									src={
-										"https://e7.pngegg.com/pngimages/22/527/png-clipart-heart-open-free-content-heart.png"
-									}
-									style={{ width: "30px", height: "30px", marginRight: "10px" }}
+								<BsFillHeartFill
+									color="red"
+									style={{ color: "red", marginRight: "10px" }}
 								/>
 								:{this.state.raislikes}
 							</Card.Text>
