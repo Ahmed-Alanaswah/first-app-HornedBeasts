@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import HornedBeasts from "./HornedBeasts";
-import Data from "./Data.json";
 
 export class Main extends Component {
 	render() {
 		return (
 			<div className="row">
-				{Data.map((img) => {
+				{this.props.filterData.map((img) => {
 					return (
 						<HornedBeasts
 							handleOpen={this.props.handleOpen}
@@ -15,6 +14,7 @@ export class Main extends Component {
 							image_url={img.image_url}
 							description={img.description}
 							keyword={img.keyword}
+							horns={img.horns}
 							raislikes={this.props.raislikes}
 						/>
 					);
