@@ -13,10 +13,13 @@ export class SelectedBeast extends Component {
 					<br />
 					<img
 						src={this.props.image_url}
-						style={{ width: "100%", margin: "20px auto" }}
+						style={{
+							width: "100%",
+							height: "300px",
+							objectFit: "cover",
+							margin: "20px auto",
+						}}
 					/>
-					<br />
-					{this.props.raislikes}
 				</Modal.Body>
 				<Modal.Footer>
 					<Button variant="secondary" onClick={this.props.handleClose}>

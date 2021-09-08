@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import Data from "./components/Data.json";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./components/Main";
 import SelectedBeast from "./components/SelectedBeast";
+import FormFilter from "./components/FormFilter";
 
 class App extends Component {
 	constructor(props) {
@@ -14,6 +15,8 @@ class App extends Component {
 			title: "",
 			description: "",
 			image_url: "",
+			Data: Data,
+			filterData: [],
 			// raislikes: 0,
 		};
 	}
@@ -23,13 +26,14 @@ class App extends Component {
 	// 		raislikes: this.state.raislikes + 1,
 	// 	});
 	// };
+
 	handleClose = () => {
 		this.setState({
 			showModal: false,
 		});
 	};
 
-	handleOpen = (title, description, image_url) => {
+	handleOpen = (title, description, image_url, raislikes) => {
 		this.setState({
 			showModal: true,
 			title: title,
@@ -37,15 +41,50 @@ class App extends Component {
 			image_url: image_url,
 		});
 	};
+	handleSelectHorns = (e) => {
+		if (e.target.value === "1") {
+			var filteredData = this.state.Data.filter((card) => {
+				return card.horns == "1";
+			});
+		}
+		if (e.target.value === "2") {
+			var filteredData = this.state.Data.filter((card) => {
+				return card.horns == "2";
+			});
+		}
+		if (e.target.value === "3") {
+			var filteredData = this.state.Data.filter((card) => {
+				return card.horns == "3";
+			});
+		}
+		if (e.target.value === "100") {
+			var filteredData = this.state.Data.filter((card) => {
+				return card.horns == "100";
+			});
+		}
+		if (e.target.value === "all") {
+			var filteredData = this.state.Data.filter((card) => {
+				return card;
+			});
+		}
+		this.setState({
+			// ...this.state,
+			filterData: filteredData,
+		});
+	};
 	render() {
 		return (
 			<>
 				<Header />
+				<FormFilter handleSelectHorns={this.handleSelectHorns} />
+				<h2>Total : {this.state.filterData.length}</h2>
 
 				<Main
 					handleOpen={this.handleOpen}
-					raislikes={this.props.raislikes}
-					increaseLike={this.increaseLike}
+					// raislikes={this.props.raislikes}
+					// increaseLike={this.increaseLike}
+					Data={this.state.Data}
+					filterData={this.state.filterData}
 				/>
 				<SelectedBeast
 					handleClose={this.handleClose}
@@ -53,7 +92,7 @@ class App extends Component {
 					title={this.state.title}
 					description={this.state.description}
 					image_url={this.state.image_url}
-					raislikes={this.props.raislikes}
+					filterData={this.state.filterData}
 				/>
 				<Footer />
 			</>
