@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState, Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Data from "./components/Data.json";
 import Header from "./components/Header";
@@ -67,11 +67,13 @@ class App extends Component {
 				return card;
 			});
 		}
+
 		this.setState({
 			// ...this.state,
 			filterData: filteredData,
 		});
 	};
+
 	render() {
 		return (
 			<>
