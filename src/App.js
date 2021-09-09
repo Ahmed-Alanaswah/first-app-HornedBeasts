@@ -16,7 +16,7 @@ class App extends Component {
 			description: "",
 			image_url: "",
 			Data: Data,
-			filterData: [],
+			filterData: Data,
 			// raislikes: 0,
 		};
 	}
